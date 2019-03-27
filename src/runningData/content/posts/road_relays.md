@@ -5,10 +5,11 @@ draft: true
 ---
 ## Southern Road Relays 2019
 
-I was interested to see the finishing times of runners from the road-relays. Do they have one superstar who is smashing it 
+I was interested to see the finishing times of runners from the road-relays. Do winning have one superstar who is smashing it 
 who pulls the average time down or are the winning teams just made up of a solid group of runners. Or a bit of both.
 
-The data from these plots are kindly taken from [here](http://www.mkac.org.uk/static/19seaarelay/19seaaheader.htm).
+The data from these plots are kindly taken from [here](http://www.mkac.org.uk/static/19seaarelay/19seaaheader.htm). The plot below compares 
+leg times for all competing teams. Long and short legs are displayed separately, and can be toggled between.
 
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript"></script>
