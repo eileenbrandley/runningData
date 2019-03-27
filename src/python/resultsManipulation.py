@@ -96,5 +96,4 @@ if __name__== "__main__":
     args = parser.parse_args()
     df = getTeamResults()
     teamRank = getTeamRanksFromRace(df)
-
     print(generateResultsStringForLegs(df, args.longLeg))

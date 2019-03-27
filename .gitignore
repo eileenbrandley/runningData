@@ -1,0 +1,9 @@
+.DS_Store
+.idea/encodings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/runningData.iml
+.idea/sbt.xml
+.idea/workspace.xml
+src/.DS_Store
+src/runningData/.DS_Store
