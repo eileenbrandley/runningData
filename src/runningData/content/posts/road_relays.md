@@ -4,8 +4,11 @@ date: 2019-03-25T12:19:41-04:00
 draft: true
 ---
 ## Southern Road Relays 2019
-I was interested to see what the make-up of the top teams in the road-relays are. Do they have one superstar who is smashing it 
-who pulls the average time down or are the winning teams just made up of a solid group of runners, no stand out super star, but all ballers.
+
+I was interested to see the finishing times of runners from the road-relays. Do they have one superstar who is smashing it 
+who pulls the average time down or are the winning teams just made up of a solid group of runners. Or a bit of both.
+
+The data from these plots are kindly taken from [here](http://www.mkac.org.uk/static/19seaarelay/19seaaheader.htm).
 
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript"></script>
