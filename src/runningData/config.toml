@@ -1,3 +1,58 @@
 baseURL = "http://example.org/"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "Running data"
+theme = "cupper-hugo-theme"
+
+paginate = "10" # Number of posts per page
+disqusShortname = "" # Enable comments by entering your Disqus shortname
+googleAnalytics = "" # Enable Google Analytics by entering your tracking id
+publishDir = "docs"
+sectionPagesMenu = "main"
+
+
+[Author]
+    name = "Eileen Toomer"
+    bio = "I am a runner"
+    avatar = "img/avatar.jpg"
+
+
+[taxonomies]
+  tag = "tags"
+
+[permalinks]
+  post = "/:filename/"
+
+[imaging]
+  quality = 99
+
+[params]
+  description = "I like data and I like running and I like graphs, so here are some little visualisations of runs and races"
+  homeMetaContent = "I like data and I like running and I like graphs, so here are some little visualisations of runs and races"
+  footer = "Made with [Hugo](https://gohugo.io/). Themed by [Cupper](https://github.com/zwbetz-gh/cupper-hugo-theme)."
+  # For more date formats see https://gohugo.io/functions/format/
+  dateFormat = "Jan 2, 2006"
+  codePenUser = "someUser"
+
+
+  [[params.social]]
+    name = "Github"
+    icon = "fab fa-github fa-2x"
+    weight = 1
+    url = "https://github.com/eileenbrandley/"
+  [[params.social]]
+    name = "Twitter"
+    icon = "fab fa-twitter fa-2x"
+    weight = 3
+    url = "https://twitter.com/eileenbrandley/"
+
+
+[menu]
+  [[menu.nav]]
+    name = "Home"
+    url = "/"
+    weight = 1
+  [[menu.nav]]
+    name = "Blog"
+    url = "/posts/"
+    weight = 2
+

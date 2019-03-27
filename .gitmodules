@@ -1,0 +1,3 @@
+[submodule "src/runningData/themes/cupper-hugo-theme"]
+	path = src/runningData/themes/cupper-hugo-theme
+	url = https://github.com/zwbetz-gh/cupper-hugo-theme.git
