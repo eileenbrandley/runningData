@@ -7,6 +7,11 @@ draft: true
 I was interested to see what the make-up of the top teams in the road-relays are. Do they have one superstar who is smashing it 
 who pulls the average time down or are the winning teams just made up of a solid group of runners, no stand out super star, but all ballers.
 
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript"></script>
+  <script src="/js/googleCharts.js"></script>
+
+
   <div>
     <label for="switchLeg">
       Leg: <input type="checkbox" id="switchLeg" checked="True">
