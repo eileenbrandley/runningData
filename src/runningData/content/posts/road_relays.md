@@ -17,7 +17,7 @@ The data from these plots are kindly taken from [here](http://www.mkac.org.uk/st
 
   <div>
     <label for="switchLeg">
-      Leg: <input type="checkbox" id="switchLeg" checked="True">
+      Long Legs? <input type="checkbox" id="switchLeg" checked="True">
       <span aria-hidden="true"></span>
     </label>
   </div>
