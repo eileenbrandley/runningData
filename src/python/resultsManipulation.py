@@ -1,6 +1,11 @@
 import gviz_api
 import pandas as pd
 import numpy as np
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--longLeg', default=False, action='store_true')
+
 
 
 def get_minutes(t):
@@ -57,3 +62,39 @@ def getTeamResults():
     teams = getTeamRanksFromRace(data)
     runners = getRunnerLegRanking(data)
     return data.join(runners).merge(teams, on='team')
+
+
+def getResultsStringByLegLength(df, long=True):
+    jsData = []
+
+    for c in df['team'].unique():
+        rename_dict = {'rank': c, "name": f"name {c}"}
+        jsData.append(df.loc[lambda d: (d['team'] == c) & (d['long'] == long)][['minutes', 'rank', 'name']].rename(columns=rename_dict))
+
+    return pd.concat(jsData, sort=False)
+
+
+def generateResultsStringForLegs(data, long):
+    jsDataFrame = getResultsStringByLegLength(df, long)
+    cols = [(i, "string") if "name" in i else (i, 'number') for i in list(jsDataFrame)]
+
+    data_table = gviz_api.DataTable(cols)
+    data_table.LoadData(list(jsDataFrame.itertuples(index=False, name=None)))
+
+    return data_table.ToJSon().replace('NaN', 'null').replace('"nan"', 'null')
+
+
+def getTeamRankDictionary(teamRank):
+    teamRankArrayDict = []
+    for i, row in teamRank.iterrows():
+        t = row['team']
+        teamRankArrayDict.append({"v": row['rank'], "f": f'{t}'})
+    return teamRankArrayDict
+
+
+if __name__== "__main__":
+    args = parser.parse_args()
+    df = getTeamResults()
+    teamRank = getTeamRanksFromRace(df)
+
+    print(generateResultsStringForLegs(df, args.longLeg))
