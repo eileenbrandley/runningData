@@ -13,7 +13,7 @@ leg times for all competing teams. Long and short legs are displayed separately,
 
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript"></script>
-  <script src="/js/googleCharts.js"></script>
+  <script src="runningData/js/googleCharts.js"></script>
 
 
   <div>
