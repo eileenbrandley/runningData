@@ -24,9 +24,10 @@ def getAllData():
 
     return (
         pd.concat([dataLong.assign(long=True), dataShort.assign(long=False)])
-            .assign(minutes=lambda d: d['time'].apply(get_minutes))
-            .assign(team=lambda d: d['team'].pipe(stripSpeechMarksFromClubs))
-            .reset_index(drop=True)
+        .assign(name=lambda d: d['name'] + " (" + d['time'].str[:5] + ")")
+        .assign(minutes=lambda d: d['time'].apply(get_minutes))
+        .assign(team=lambda d: d['team'].pipe(stripSpeechMarksFromClubs))
+        .reset_index(drop=True)
     )
 
 
