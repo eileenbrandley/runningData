@@ -25,7 +25,7 @@ function drawChart(longLegs=true) {
         title: 'Southern Road Relays Leg Times (mins)',
         hAxis: {title: "Time (mins)"},
         vAxis: {
-            title: "Club",
+            //title: "Club",
             textStyle: {fontSize: 10},
             ticks: [
                 {'v': 8.0, 'f': 'Abingdon AC'},
@@ -73,9 +73,9 @@ function drawChart(longLegs=true) {
         },
         curveType: 'function',
         pointSize: 8,
-        height: 800,
-        width: 1000,
-        chartArea: { width: "50%", height: "85%" },
+        // height: 800,
+        // width: 1000,
+        chartArea: { width: "60%", height: "80%" },
     };
 
     var chart = new google.visualization.LineChart(document.getElementById('chart_div'));

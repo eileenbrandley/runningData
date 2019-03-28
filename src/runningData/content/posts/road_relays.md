@@ -11,10 +11,6 @@ who pulls the average time down or are the winning teams just made up of a solid
 The data from these plots are kindly taken from [here](http://www.mkac.org.uk/static/19seaarelay/19seaaheader.htm). The plot below compares 
 leg times for all competing teams. Long and short legs are displayed separately, and can be toggled between.
 
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script type="text/javascript"></script>
-  <script src="/runningData/js/googleCharts.js"></script>
-
 
   <div>
     <label for="switchLeg">
@@ -22,6 +18,8 @@ leg times for all competing teams. Long and short legs are displayed separately,
       <span aria-hidden="true"></span>
     </label>
   </div>
+  
+  
  
 
-<div id="chart_div">
+<div id="chart_div" style="height: 1000px; width: 100%; margin-top: 0; position: absolute; left: 10px">
