@@ -14,13 +14,5 @@ The data from these plots are kindly taken from [here](http://www.mkac.org.uk/st
 plot below compares leg times for all competing teams. Long and short legs are displayed separately, use the toggle to 
 switch between the two, hovering over a point should show a little more detail about the leg.
 
-
-  <div>
-    <label for="switchLeg">
-      Long Legs? <input type="checkbox" id="switchLeg" checked="True">
-      <span aria-hidden="true"></span>
-    </label>
-  </div>
   
-  
- {{< scatterchart >}}
+ {{< scatterchart race="mens" >}}

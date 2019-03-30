@@ -1,0 +1,29 @@
+{
+  "positions": [
+    {"v": 21.0, "f": "Belgrave Harriers A"},
+    {"v": 13.0, "f": "Belgrave Harriers B"},
+    {"v": 24.0, "f": "Cambridge & Coleridge AC A"},
+    {"v": 9.0, "f": "Colchester Harriers"},
+    {"v": 11.0, "f": "Ealing Eagles Running Club"},
+    {"v": 25.0, "f": "Herne Hill Harriers A"},
+    {"v": 16.0, "f": "Herne Hill Harriers B"},
+    {"v": 20.0, "f": "Highgate Harriers A"},
+    {"v": 1.0, "f": "Hillingdon AC"},
+    {"v": 15.0, "f": "Kent AC"},
+    {"v": 2.0, "f": "Leighton Buzzard AC"},
+    {"v": 22.0, "f": "London Heathside AC A"},
+    {"v": 12.0, "f": "Luton AC"},
+    {"v": 14.0, "f": "Marshall Milton Keynes AC"},
+    {"v": 3.0, "f": "Oxford City AC"},
+    {"v": 8.0, "f": "Reading AC"},
+    {"v": 18.0, "f": "Serpentine RC"},
+    {"v": 4.0, "f": "South London Harriers A"},
+    {"v": 17.0, "f": "Southampton AC"},
+    {"v": 5.0, "f": "St Albans Striders"},
+    {"v": 23.0, "f": "Thames Valley Harriers A"},
+    {"v": 7.0, "f": "Tonbridge AC"},
+    {"v": 6.0, "f": "Vale of Aylesbury AC"},
+    {"v": 19.0, "f": "Victoria Park H & Tower H AC"},
+    {"v": 10.0, "f": "Woodford Green w Essex L"}
+  ]
+}

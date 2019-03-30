@@ -1,1 +1,77 @@
-<div id="chart_div" style="height: 1000px; width: 100%; margin-top: 0; position: absolute; left: 10px">
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript"></script>
+<script>
+
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(function() { drawChart(true);});
+
+    function drawChart(longLegs=true) {
+
+        if ({{.Get "race"}} == 'mens'){
+            var allLegsJSon = {{ .Site.Data.mensLegs }}
+            var positions = {{ .Site.Data.finishingPositionsMen.positions }}
+
+        } else {
+            var allLegsJSon = {{ .Site.Data.womensLegs }}
+            var positions = {{ .Site.Data.finishingPositionsWomen.positions }}
+        }
+
+
+        if (longLegs) {
+            var rawJSON = allLegsJSon.longLegs
+        } else {
+            var rawJSON = allLegsJSon.shortLegs
+        }
+
+        var data = new google.visualization.DataTable(rawJSON);
+
+        var i = 2;
+        while (i < data['vg'].length) {
+            data.setColumnProperty(i, 'role', 'tooltip')
+            i += 2;
+        }
+
+        var options = {
+            legend: 'none',
+            title: 'Southern Road Relays Leg Times (mins)',
+            hAxis: {title: "Time (mins)"},
+            vAxis: {
+                //title: "Club",
+                textStyle: {fontSize: 10},
+                ticks: positions
+    },
+        curveType: 'function',
+            pointSize: 8,
+            // height: 800,
+            // width: 1000,
+            chartArea: { width: "60%", height: "80%" },
+    };
+
+        var chart = new google.visualization.LineChart(document.getElementById('scatter_div'));
+        chart.draw(data, options);
+    }
+
+
+    (function () {
+
+        /* Switch what leg length to display */
+        window.onload=function(){
+            var switcher = document.getElementById('switchLeg');
+            if (switcher){
+                switcher.addEventListener('change', function () {
+                    drawChart(this.checked);
+                });
+            }
+        }
+    }());
+
+</script>
+
+<div>
+    <label for="switchLeg">
+        Long Legs? <input type="checkbox" id="switchLeg" checked="True">
+        <span aria-hidden="true"></span>
+    </label>
+</div>
+
+<div id="scatter_div" style="height: 1000px; width: 100%; margin-top: 0; position: absolute; left: 10px">
