@@ -7,15 +7,67 @@
     google.charts.load('current', {packages: ['corechart', 'bar']});
     google.charts.setOnLoadCallback(drawBarColors);
 
+    function sortFunction(a, b) {
+        var aTotal = (a[1] + a[2] + a[3] + a[4])
+        var bTotal = (b[1] + b[2] + b[3] + b[4])
+        if (aTotal  === bTotal) {
+            return 0;
+        }
+        else {
+            return (aTotal < bTotal) ? -1 : 1;
+        }
+    }
+
+
     function drawBarColors() {
-        var data = new google.visualization.DataTable({{ .Site.Data.womensLegs.stacked }});
+
+        var rawData = {{ .Site.Data.surreyLeagueSeasonsSW }}
+
+        var teamScores = {}
+        var matchScores = [["Club", "Match 1", "Match 2", "Match 3", "Match 4"]]
+
+        for(var i = 1; i < 5; i++) {
+            teamScores[i] = {}
+
+            for (var j = 0; j < rawData["2018"][i]["positions"].length; j++) {
+
+                var athleteResult = rawData["2018"][i]["positions"][j]
+
+                if (athleteResult["club"] in teamScores[i]) {
+                    teamScores[i][athleteResult["club"]].push(athleteResult["rank"])
+                } else {
+                    teamScores[i][athleteResult["club"]] = [athleteResult["rank"]]
+                }
+            }
+
+            for (var c in teamScores[i]){
+                if (i == 1) {
+                    matchScores.push([c, teamScores[i][c].slice(0, 5).reduce((partial_sum, a) => partial_sum + a)])
+                } else {
+                    for (var k = 0; k < matchScores.length; k ++){
+                        if (c == matchScores[k][0]) {
+                            matchScores[k].push(teamScores[i][c].slice(0, 5).reduce((partial_sum, a) => partial_sum + a))
+                        }
+                    }
+                }
+
+            }
+        }
+
+        var data = google.visualization.arrayToDataTable(matchScores.sort(sortFunction));
 
         var options = {
             width: 1000,
             height: 1000,
             legend: { position: 'top', maxLines: 3 },
             bar: { groupWidth: '75%' },
-            isStacked: true
+            isStacked: true,
+            series: {
+                0: {color: '#11144C'},
+                1: {color: '#3A9679'},
+                2: {color: '#FABC60'},
+                3: {color: '#E16262'}
+            }
         };
         var chart = new google.visualization.BarChart(document.getElementById('stackedbox_div'));
         chart.draw(data, options);
