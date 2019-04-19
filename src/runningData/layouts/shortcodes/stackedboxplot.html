@@ -18,10 +18,19 @@
         }
     }
 
+    function checkAllMatches(a) {
+        return a.length === 5;
+    }
 
-    function drawBarColors() {
 
-        var rawData = {{ .Site.Data.surreyLeagueSeasonsSW }}
+    function drawBarColors(year="2018", women=true) {
+        if (women){
+            var rawData = {{ .Site.Data.surreyLeagueSeasonsSW }}
+            var toScore = 5
+        } else {
+            var rawData = {{ .Site.Data.surreyLeagueSeasonsSM }}
+            var toScore = 10
+        }
 
         var teamScores = {}
         var matchScores = [["Club", "Match 1", "Match 2", "Match 3", "Match 4"]]
@@ -29,9 +38,9 @@
         for(var i = 1; i < 5; i++) {
             teamScores[i] = {}
 
-            for (var j = 0; j < rawData["2018"][i]["positions"].length; j++) {
+            for (var j = 0; j < rawData[year][i]["positions"].length; j++) {
 
-                var athleteResult = rawData["2018"][i]["positions"][j]
+                var athleteResult = rawData[year][i]["positions"][j]
 
                 if (athleteResult["club"] in teamScores[i]) {
                     teamScores[i][athleteResult["club"]].push(athleteResult["rank"])
@@ -42,11 +51,11 @@
 
             for (var c in teamScores[i]){
                 if (i == 1) {
-                    matchScores.push([c, teamScores[i][c].slice(0, 5).reduce((partial_sum, a) => partial_sum + a)])
-                } else {
+                    matchScores.push([c, teamScores[i][c].slice(0, toScore).reduce((partial_sum, a) => partial_sum + a)])
+                } else if (c != "???") {
                     for (var k = 0; k < matchScores.length; k ++){
                         if (c == matchScores[k][0]) {
-                            matchScores[k].push(teamScores[i][c].slice(0, 5).reduce((partial_sum, a) => partial_sum + a))
+                            matchScores[k].push(teamScores[i][c].slice(0, toScore).reduce((partial_sum, a) => partial_sum + a))
                         }
                     }
                 }
@@ -54,10 +63,10 @@
             }
         }
 
-        var data = google.visualization.arrayToDataTable(matchScores.sort(sortFunction));
+        var data = google.visualization.arrayToDataTable(matchScores.filter(checkAllMatches).sort(sortFunction).slice(0, 16));
 
         var options = {
-            width: 1000,
+            width: 800,
             height: 1000,
             legend: { position: 'top', maxLines: 3 },
             bar: { groupWidth: '75%' },
@@ -67,11 +76,50 @@
                 1: {color: '#3A9679'},
                 2: {color: '#FABC60'},
                 3: {color: '#E16262'}
-            }
+            },
+            chartArea: { width: "60%", height: "80%" }
         };
         var chart = new google.visualization.BarChart(document.getElementById('stackedbox_div'));
         chart.draw(data, options);
     }
 
+    (function () {
+        window.onload=function(){
+
+            const selectElement = document.querySelector('.season');
+            var g = document.getElementsByName('gender');
+
+            var isFemale = true;
+            var year = "2018";
+
+            selectElement.addEventListener('change', (event) => {
+                year = event.target.value
+                drawBarColors(year=year, women=isFemale);
+            });
+
+            // loop through list
+            for (var i=0, len=g.length; i<len; i++) {
+                g[i].onclick = function() { // assign onclick handler function to each
+                    // put clicked radio button's value in total field
+                    isFemale = this.value === "female";
+                    drawBarColors(year=year, women=isFemale);
+                };
+            }
+        }
+    }())
+
 </script>
-<div id="stackedbox_div"></div>
+
+<label>Choose a season:
+    <select class="season" name="season">
+        <option value="2018">2018/19</option>
+        <option value="2017">2017/18</option>
+        <option value="2016">2016/17</option>
+        <option value="2015">2015/16</option>
+        <option value="2014">2014/15</option>
+    </select>
+</label><br>
+    <label for="female" style="margin-top: 0;"><input type="radio" name="gender" value="female" id="female" checked> Senior Women<br></label>
+    <label for="male" style="margin-top: 0;"><input type="radio" name="gender" value="male" id="male"> Senior Men</label>
+<div id="stackedbox_div" style="height: 1000px; width: 100%; margin-top: 0;  left: 10px"></div>
+

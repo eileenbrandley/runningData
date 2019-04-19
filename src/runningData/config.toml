@@ -26,7 +26,7 @@ sectionPagesMenu = "main"
   quality = 99
 
 [params]
-  description = "I like data and I like running and I like graphs, so here are some little visualisations of runs and races"
+  description = "I like data and I like running and I like graphs, so here are some little visualisations of runs and races."
   homeMetaContent = "I like data and I like running and I like graphs, so here are some little visualisations of runs and races"
   footer = "Made with [Hugo](https://gohugo.io/). Themed by [Cupper](https://github.com/zwbetz-gh/cupper-hugo-theme)."
   # For more date formats see https://gohugo.io/functions/format/
