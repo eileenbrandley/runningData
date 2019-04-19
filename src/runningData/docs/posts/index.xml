@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Running data</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 25 Mar 2019 12:19:41 -0400</lastBuildDate>
+    <lastBuildDate>Fri, 29 Mar 2019 12:19:41 -0400</lastBuildDate>
     
 	<atom:link href="https://eileenbrandley.github.io/runningData/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Senior Surrey League Seasons</title>
+      <link>https://eileenbrandley.github.io/runningData/posts/ladiessurreyleague2018/</link>
+      <pubDate>Fri, 29 Mar 2019 12:19:41 -0400</pubDate>
+      
+      <guid>https://eileenbrandley.github.io/runningData/posts/ladiessurreyleague2018/</guid>
+      <description>What happened in the league overall? Season total scores and positions for historic Surrey league seasons. There are some intense finishes in here&amp;hellip; the 2019 Senior Women battle between Herne Hill and Thames Hare and Hounds is close. But not as close as the 2017&amp;frasl;18 Men&amp;rsquo;s season between H/W and Kent AC.
+   google.charts.load(&#39;current&#39;, {packages: [&#39;corechart&#39;, &#39;bar&#39;]}); google.charts.setOnLoadCallback(drawBarColors); function sortFunction(a, b) { var aTotal = (a[1] + a[2] + a[3] + a[4]) var bTotal = (b[1] + b[2] + b[3] + b[4]) if (aTotal === bTotal) { return 0; } else { return (aTotal partial_sum + a)]) } else if (c !</description>
+    </item>
     
     <item>
       <title>Senior Men Road Relays</title>
