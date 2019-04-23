@@ -1,0 +1,89 @@
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    var resultsData = {{ .Site.Data.MarRankings }}
+
+    function calculateYearlyMeanTime(year, yearResults, upto=250) {
+        var count = 0;
+        var timeSum = 0;
+        var resultsArray = []
+
+        for (let i=0; i < upto; i++){
+            count += 1
+            timeSum += yearResults[i]['time']
+            var resultsString = yearResults[i]['Name'] + " " + yearResults[i]['Chip']
+
+            resultsArray.push([year, null, yearResults[i]['time'] / (60*60), resultsString])
+        }
+
+        resultsArray.push([year, (timeSum / count) / (60*60), null, null])
+
+        return resultsArray
+    }
+
+    function calculateMeanResultForYears(data, upto=250) {
+        var meanTimes = []
+
+        for (let y of Object.keys(data)){
+            console.log(y)
+            var mu = calculateYearlyMeanTime(parseInt(y), data[y], upto)
+            meanTimes = meanTimes.concat(mu)
+        }
+        return meanTimes
+    }
+
+    function getStringTime(t) {
+        var hrs = Math.floor(numTime)
+        var mins = Math.floor(numTime * 60 % 60)
+        var secs = t * 60 * 60 - hrs * 60 * 60 - mins * 60
+
+        return `${hrs}:${mins}:${secs}`
+    }
+
+    function drawChart() {
+
+        var topResults = 25
+
+        var rawData = calculateMeanResultForYears(resultsData, topResults);
+        console.log(rawData)
+
+
+        var dataTable = new google.visualization.DataTable();
+        dataTable.addColumn('number', 'Year');
+        dataTable.addColumn('number', 'Average time');
+        dataTable.addColumn('number', 'Time')
+
+        // column for tooltip content
+        dataTable.addColumn({type: 'string', role: 'tooltip'});
+
+        dataTable.addRows(rawData);
+
+        // var data = google.visualization.arrayToDataTable(rawData, true);
+
+        var titleString = `Finishing time for top ${topResults} British runners by year - Marathon`
+
+        var options = {
+            title : titleString,
+            vAxis: {title: 'Finishing time'},
+            hAxis: {title: 'Year'},
+            backgroundColor: "#FEFFDB",
+            legend: false,
+            series: {
+                1: {color: "#FF8B00", pointShape: {dataOpacity: 0.7}},
+                0: {color: "#444444",
+                    pointShape: {type: 'diamond', sides: 5, dent: 0.7}, pointSize: 20, dataOpacity: 0.7},
+                    curveType: 'function'
+            }
+        };
+
+        var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+
+        chart.draw(dataTable, options);
+    }
+
+
+</script>
+
+<div id="chart_div" style="width: 900px; height: 500px;"></div>
