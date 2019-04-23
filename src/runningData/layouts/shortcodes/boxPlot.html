@@ -14,6 +14,8 @@
         var count = 0;
         var timeSum = 0;
         var resultsArray = []
+        var minTime = 4;
+        var maxTime = 0;
 
         for (let i=0; i < upto; i++){
             count += 1
@@ -21,6 +23,8 @@
             var resultsString = i+1 + ". " + yearResults[i]['Name'] + " " + yearResults[i]['Chip']
 
             resultsArray.push([year, null, null, yearResults[i]['time'] / (60*60), resultsString])
+            maxTime = Math.max(maxTime, yearResults[i]['time'] / (60*60))
+            minTime = Math.min(minTime, yearResults[i]['time'] / (60*60))
         }
 
         var mu = (timeSum / count) / (60*60)
@@ -28,18 +32,23 @@
 
         resultsArray.push([year, mu, averageString, null, null])
 
-        return resultsArray
+        return [resultsArray, minTime, maxTime]
     }
 
     function calculateMeanResultForYears(data, upto=250) {
-        var meanTimes = []
+        var meanTimes = [];
+        var maxTime = 0;
+        var minTime = 4;
 
         for (let y of Object.keys(data)){
-            console.log(y)
             var mu = calculateYearlyMeanTime(parseInt(y), data[y], upto)
-            meanTimes = meanTimes.concat(mu)
+            meanTimes = meanTimes.concat(mu[0])
+            maxTime = Math.max(maxTime, mu[2])
+            minTime = Math.min(minTime, mu[1])
+
         }
-        return meanTimes
+
+        return [meanTimes, minTime, maxTime]
     }
 
     function getStringTime(t) {
@@ -47,7 +56,36 @@
         var mins = Math.floor(t * 60 % 60)
         var secs = Math.floor(t * 60 * 60 - hrs * 60 * 60 - mins * 60)
 
-        return `${hrs}:${mins}:${secs}`
+        if (secs > 10 && mins > 10){
+            return `${hrs}:${mins}:${secs}`
+        } else if (mins > 10) {
+            return `${hrs}:${mins}:0${secs}`
+        } else if (secs > 10) {
+            return `${hrs}:0${mins}:${secs}`
+        } else {
+            return `${hrs}:0${mins}:0${secs}`
+        }
+
+
+    }
+
+    function minQuerterHour(t, r=4) {
+        return Math.floor(t * r) / r
+    }
+
+    function maxQuarterHour(t, r=4) {
+        return Math.ceil(t * r) / r
+    }
+
+    function generateTicks(minT, maxT, event) {
+        ticks = []
+        if (event === 'Mar') {r = 4} else {r = 12}
+
+        for (t = minQuerterHour(minT, r); t <= maxQuarterHour(maxT, r); t += 1 / r){
+            ticks.push({"v": t, "f": getStringTime(t)})
+        }
+        console.log(ticks)
+        return ticks
     }
 
     function drawChart(event='Mar', upto=50) {
@@ -59,11 +97,9 @@
             resultsData = {{ .Site.Data.tenRankings }}
         }
 
-
         var topResults = upto
 
         var rawData = calculateMeanResultForYears(resultsData, topResults);
-        console.log(rawData)
 
 
         var dataTable = new google.visualization.DataTable();
@@ -75,7 +111,7 @@
         // column for tooltip content
         dataTable.addColumn({type: 'string', role: 'tooltip'});
 
-        dataTable.addRows(rawData);
+        dataTable.addRows(rawData[0]);
 
         // var data = google.visualization.arrayToDataTable(rawData, true);
 
@@ -83,8 +119,11 @@
 
         var options = {
             title : titleString,
-            vAxis: {title: 'Finishing time (hrs)'},
-            hAxis: {title: 'Year'},
+            vAxis: {
+                title: 'Finishing time (hrs)',
+                ticks: generateTicks(rawData[1], rawData[2], event)
+            },
+            hAxis: {title: 'Year', format: '####'},
             backgroundColor: "#FEFFDB",
             legend: false,
             series: {
