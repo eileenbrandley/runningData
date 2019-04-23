@@ -18,7 +18,7 @@
         for (let i=0; i < upto; i++){
             count += 1
             timeSum += yearResults[i]['time']
-            var resultsString = yearResults[i]['Name'] + " " + yearResults[i]['Chip']
+            var resultsString = i+1 + ". " + yearResults[i]['Name'] + " " + yearResults[i]['Chip']
 
             resultsArray.push([year, null, null, yearResults[i]['time'] / (60*60), resultsString])
         }
@@ -50,7 +50,7 @@
         return `${hrs}:${mins}:${secs}`
     }
 
-    function drawChart(event='10K', upto=50) {
+    function drawChart(event='Mar', upto=50) {
         if (event === 'Mar'){
             var resultsData = {{ .Site.Data.MarRankings }}
         } else if (event == 'HM'){
@@ -88,7 +88,7 @@
             backgroundColor: "#FEFFDB",
             legend: false,
             series: {
-                1: {color: "#FF8B00", pointShape: {dataOpacity: 0.7}},
+                1: {color: "#FF8B00", pointShape: {dataOpacity: 0.3}},
                 0: {color: "#444444",
                     pointShape: {type: 'diamond', sides: 5, dent: 0.7}, pointSize: 20, dataOpacity: 0.7},
                     curveType: 'function'
@@ -100,7 +100,39 @@
         chart.draw(dataTable, options);
     }
 
+    (function () {
+        window.onload=function(){
+
+            const selectElement = document.querySelector('.distance');
+            var slider = document.getElementById("myRange")
+
+            var e = 'Mar';
+            var n = 100;
+
+            selectElement.addEventListener('change', (event) => {
+                e = event.target.value
+                drawChart(e=e, n=n);
+            });
+
+            slider.oninput = function() {
+                n = this.value;
+                drawChart(e=e, n=n)
+            }
+        }
+    }())
+
 
 </script>
 
+<label>Choose a distance:
+    <select class="distance" name="distance">
+        <option value="Mar">Marathon</option>
+        <option value="HM">Half Marathon</option>
+        <option value="10K">10km</option>
+    </select>
+</label>
+
+<div class="slidecontainer" style="margin-top: 0">Number of athletes :
+    <input type="range" min="10" max="249" value="50" class="slider" id="myRange">
+</div>
 <div id="chart_div" style="width: 900px; height: 500px;"></div>
