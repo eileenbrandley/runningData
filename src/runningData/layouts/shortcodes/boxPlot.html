@@ -15,10 +15,13 @@
             timeSum += yearResults[i]['time']
             var resultsString = yearResults[i]['Name'] + " " + yearResults[i]['Chip']
 
-            resultsArray.push([year, null, yearResults[i]['time'] / (60*60), resultsString])
+            resultsArray.push([year, null, null, yearResults[i]['time'] / (60*60), resultsString])
         }
 
-        resultsArray.push([year, (timeSum / count) / (60*60), null, null])
+        var mu = (timeSum / count) / (60*60)
+        var averageString = `Average time ${getStringTime(mu)}`
+
+        resultsArray.push([year, mu, averageString, null, null])
 
         return resultsArray
     }
@@ -35,16 +38,16 @@
     }
 
     function getStringTime(t) {
-        var hrs = Math.floor(numTime)
-        var mins = Math.floor(numTime * 60 % 60)
-        var secs = t * 60 * 60 - hrs * 60 * 60 - mins * 60
+        var hrs = Math.floor(t)
+        var mins = Math.floor(t * 60 % 60)
+        var secs = Math.floor(t * 60 * 60 - hrs * 60 * 60 - mins * 60)
 
         return `${hrs}:${mins}:${secs}`
     }
 
-    function drawChart() {
+    function drawChart(event='Mar', upto=200) {
 
-        var topResults = 25
+        var topResults = upto
 
         var rawData = calculateMeanResultForYears(resultsData, topResults);
         console.log(rawData)
@@ -53,6 +56,7 @@
         var dataTable = new google.visualization.DataTable();
         dataTable.addColumn('number', 'Year');
         dataTable.addColumn('number', 'Average time');
+        dataTable.addColumn({type: 'string', role: 'tooltip'})
         dataTable.addColumn('number', 'Time')
 
         // column for tooltip content
