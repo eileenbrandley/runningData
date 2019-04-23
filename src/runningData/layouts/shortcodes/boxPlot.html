@@ -3,7 +3,12 @@
 
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
-    var resultsData = {{ .Site.Data.MarRankings }}
+
+    eventsNames = {
+        'HM': 'Half Marathon',
+        'Mar': 'Marathon',
+        '10K': '10K'
+    }
 
     function calculateYearlyMeanTime(year, yearResults, upto=250) {
         var count = 0;
@@ -45,7 +50,15 @@
         return `${hrs}:${mins}:${secs}`
     }
 
-    function drawChart(event='Mar', upto=200) {
+    function drawChart(event='10K', upto=50) {
+        if (event === 'Mar'){
+            var resultsData = {{ .Site.Data.MarRankings }}
+        } else if (event == 'HM'){
+            var resultsData = {{ .Site.Data.HMRankings }}
+        } else {
+            resultsData = {{ .Site.Data.tenRankings }}
+        }
+
 
         var topResults = upto
 
@@ -66,11 +79,11 @@
 
         // var data = google.visualization.arrayToDataTable(rawData, true);
 
-        var titleString = `Finishing time for top ${topResults} British runners by year - Marathon`
+        var titleString = `Finishing time for top ${topResults} British runners by year - ${eventsNames[event]}`
 
         var options = {
             title : titleString,
-            vAxis: {title: 'Finishing time'},
+            vAxis: {title: 'Finishing time (hrs)'},
             hAxis: {title: 'Year'},
             backgroundColor: "#FEFFDB",
             legend: false,
