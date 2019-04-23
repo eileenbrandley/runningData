@@ -17,7 +17,7 @@
       <pubDate>Fri, 19 Apr 2019 12:19:41 -0400</pubDate>
       
       <guid>https://eileenbrandley.github.io/runningData/posts/womensroadrunning/</guid>
-      <description> Who runs the world?   google.charts.load(&#39;current&#39;, {&#39;packages&#39;:[&#39;corechart&#39;]}); google.charts.setOnLoadCallback(drawChart); eventsNames = { &#39;HM&#39;: &#39;Half Marathon&#39;, &#39;Mar&#39;: &#39;Marathon&#39;, &#39;10K&#39;: &#39;10K&#39; } function calculateYearlyMeanTime(year, yearResults, upto=250) { var count = 0; var timeSum = 0; var resultsArray = [] for (let i=0; i { e = event.target.value drawChart(e=e, n=n); }); slider.oninput = function() { n = this.value; drawChart(e=e, n=n) } } }())  Choose a distance: Marathon Half Marathon 10km   Number of athletes :   </description>
+      <description>Who runs the world?   google.charts.load(&#39;current&#39;, {&#39;packages&#39;:[&#39;corechart&#39;]}); google.charts.setOnLoadCallback(drawChart); eventsNames = { &#39;HM&#39;: &#39;Half Marathon&#39;, &#39;Mar&#39;: &#39;Marathon&#39;, &#39;10K&#39;: &#39;10K&#39; } function calculateYearlyMeanTime(year, yearResults, upto=250) { var count = 0; var timeSum = 0; var resultsArray = [] var minTime = 4; var maxTime = 0; for (let i=0; i 10 &amp;&amp; mins  10){ return `${hrs}:${mins}:${secs}` } else if (mins  10) { return `${hrs}:${mins}:0${secs}` } else if (secs  10) { return `${hrs}:0${mins}:${secs}` } else { return `${hrs}:0${mins}:0${secs}` } } function minQuerterHour(t, r=4) { return Math.</description>
     </item>
     
     <item>
