@@ -7,7 +7,8 @@
     eventsNames = {
         'HM': 'Half Marathon',
         'Mar': 'Marathon',
-        '10K': '10K'
+        '10K': '10K',
+        '5000': '5000'
     }
 
     function calculateYearlyMeanTime(year, yearResults, upto=250) {
@@ -17,7 +18,7 @@
         var minTime = 4;
         var maxTime = 0;
 
-        for (let i=0; i < upto; i++){
+        for (let i=0; i < upto && i < yearResults.length; i++){
             count += 1
             timeSum += yearResults[i]['time']
             var resultsString = i+1 + ". " + yearResults[i]['Name'] + " " + yearResults[i]['Chip']
@@ -69,7 +70,7 @@
 
     }
 
-    function minQuerterHour(t, r=4) {
+    function minQuarterHour(t, r=4) {
         return Math.floor(t * r) / r
     }
 
@@ -81,7 +82,7 @@
         ticks = []
         if (event === 'Mar') {r = 4} else {r = 12}
 
-        for (t = minQuerterHour(minT, r); t <= maxQuarterHour(maxT, r); t += 1 / r){
+        for (t = minQuarterHour(minT, r); t <= maxQuarterHour(maxT, r); t += 1 / r){
             ticks.push({"v": t, "f": getStringTime(t)})
         }
         console.log(ticks)
@@ -93,8 +94,12 @@
             var resultsData = {{ .Site.Data.MarRankings }}
         } else if (event == 'HM'){
             var resultsData = {{ .Site.Data.HMRankings }}
-        } else {
+        } else if (event == '10K') {
             resultsData = {{ .Site.Data.tenRankings }}
+        } else if (event == '5000') {
+            resultsData = {{ .Site.Data.fiveThousandRankings }}
+        } else {
+            resultsData = {{ .Site.Data.tenThousandRankings }}
         }
 
         var topResults = upto
@@ -127,10 +132,12 @@
             backgroundColor: "#FEFFDB",
             legend: false,
             series: {
-                1: {color: "#FF8B00", pointShape: {dataOpacity: 0.3}},
+                1: {color: "#FF8B00",
+                    pointShape: {dataOpacity: 0.3}},
                 0: {color: "#444444",
                     pointShape: {type: 'diamond', sides: 5, dent: 0.7}, pointSize: 20, dataOpacity: 0.7},
-                    curveType: 'function'
+                    curveType: 'function',
+                    lineWidth: 1
             }
         };
 
@@ -168,10 +175,14 @@
         <option value="Mar">Marathon</option>
         <option value="HM">Half Marathon</option>
         <option value="10K">10km</option>
+        <option value="10000">10000m</option>
+        <option value="5000">5000m</option>
     </select>
 </label>
 
-<div class="slidecontainer" style="margin-top: 0">Number of athletes :
+<div class="slidecontainer" style="margin-top: 0">
+    <label>Number of athletes :
     <input type="range" min="10" max="249" value="50" class="slider" id="myRange">
+    </label>
 </div>
-<div id="chart_div" style="width: 900px; height: 500px;"></div>
+<div id="chart_div" style="width: 800px; height: 500px;"></div>
