@@ -8,7 +8,8 @@
         'HM': 'Half Marathon',
         'Mar': 'Marathon',
         '10K': '10K',
-        '5000': '5000'
+        '5000': '5000',
+        '10000': '10000'
     }
 
     function calculateYearlyMeanTime(year, yearResults, upto=250) {
@@ -89,17 +90,27 @@
         return ticks
     }
 
-    function drawChart(event='Mar', upto=50) {
-        if (event === 'Mar'){
+    function drawChart(event='Mar', upto=50, isFemale=true) {
+        if (event === 'Mar' && isFemale){
             var resultsData = {{ .Site.Data.MarRankings }}
-        } else if (event == 'HM'){
+        } else if (event === 'HM' && isFemale){
             var resultsData = {{ .Site.Data.HMRankings }}
-        } else if (event == '10K') {
+        } else if (event === '10K' && isFemale) {
             resultsData = {{ .Site.Data.tenRankings }}
-        } else if (event == '5000') {
+        } else if (event === '5000' && isFemale) {
             resultsData = {{ .Site.Data.fiveThousandRankings }}
-        } else {
+        } else if (event === '10000' && isFemale) {
             resultsData = {{ .Site.Data.tenThousandRankings }}
+        } else if (event === 'Mar') {
+            var resultsData = {{ .Site.Data.MarRankingsMen }}
+        } else if (event === 'HM') {
+            var resultsData = {{ .Site.Data.HMRankingsMen }}
+        } else if (event === '10K') {
+            var resultsData = {{ .Site.Data.tenRankingsMen }}
+        } else if (event === '5000') {
+            var resultsData = {{ .Site.Data.fiveThousandRankingsMen }}
+        } else {
+            var resultsData = {{ .Site.Data.tenThousandRankingsMen }}
         }
 
         var topResults = upto
@@ -150,19 +161,30 @@
         window.onload=function(){
 
             const selectElement = document.querySelector('.distance');
-            var slider = document.getElementById("myRange")
+            var slider = document.getElementById("myRange");
+            var g = document.getElementsByName('gender');
 
             var e = 'Mar';
             var n = 100;
+            var isFemale = true;
 
             selectElement.addEventListener('change', (event) => {
                 e = event.target.value
-                drawChart(e=e, n=n);
+                drawChart(e=e, n=n, female=isFemale);
             });
 
             slider.oninput = function() {
                 n = this.value;
-                drawChart(e=e, n=n)
+                drawChart(e=e, n=n, female=isFemale)
+            }
+
+            // loop through list
+            for (var i=0, len=g.length; i<len; i++) {
+                g[i].onclick = function() { // assign onclick handler function to each
+                    // put clicked radio button's value in total field
+                    isFemale = this.value === "female";
+                    drawChart(e=e, n=n, female=isFemale);
+                };
             }
         }
     }())
@@ -185,4 +207,7 @@
     <input type="range" min="10" max="249" value="50" class="slider" id="myRange">
     </label>
 </div>
+<label for="female" style="margin-top: 0;"><input type="radio" name="gender" value="female" id="female" checked> Senior Women<br></label>
+<label for="male" style="margin-top: 0;"><input type="radio" name="gender" value="male" id="male"> Senior Men</label>
+
 <div id="chart_div" style="width: 800px; height: 500px;"></div>
