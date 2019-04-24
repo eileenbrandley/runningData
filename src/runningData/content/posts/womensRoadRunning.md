@@ -11,6 +11,3 @@ year results in a bit as we are still a bit early in the season so the results a
 
 {{< boxPlot >}}
 
-The girls are getting faster! It looks like the average times of the fastest distance runners is dropping, from 
-~2:47 average in 2010 to sub 2:45 in 2017 and 2018 for the marathon, from high 34minutes to low 34mins for the 10km 
-and from 17mins to 16:30mins in the 5000m (when we consider the top 250 athletes).
