@@ -1,0 +1,10 @@
+---
+title: "Night of the 10000 metres"
+date: 2019-04-23T12:19:41-04:00
+draft: true
+---
+
+## Race analysis of the night of 10000 metres
+
+{{< night10kBarChart >}}
+

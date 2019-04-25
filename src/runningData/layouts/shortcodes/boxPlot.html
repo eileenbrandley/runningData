@@ -86,7 +86,6 @@
         for (t = minQuarterHour(minT, r); t <= maxQuarterHour(maxT, r); t += 1 / r){
             ticks.push({"v": t, "f": getStringTime(t)})
         }
-        console.log(ticks)
         return ticks
     }
 
@@ -144,7 +143,9 @@
             legend: false,
             series: {
                 1: {color: "#FF8B00",
-                    pointShape: {dataOpacity: 0.3}},
+                    pointShape: {dataOpacity: 0.3},
+                    pointSize: 5
+                },
                 0: {color: "#444444",
                     pointShape: {type: 'diamond', sides: 5, dent: 0.7}, pointSize: 20, dataOpacity: 0.7},
                     curveType: 'function',
