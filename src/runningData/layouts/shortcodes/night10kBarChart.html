@@ -78,7 +78,7 @@
         var raceArray = [['position']]
 
         for (i = 0; i < 50; i ++){
-            raceArray[0].push('Lap ' + (i+1))
+            raceArray[0].push('Lap ' + (i+1) + ' (secs)')
             raceArray[0].push({ role: 'style' })
         }
 
@@ -102,6 +102,15 @@
     }
 
 
+    function gethAxisDict(lapTime) {
+        var ticks = [];
+        for (t = 0; t < lapTime*50; t += 300){
+            ticks.push({"v": t, "f": `${t / 60}:00`})
+        }
+        return ticks
+    }
+
+
     function drawChart(race=6) {
         var rawData = {{ .Site.Data.night10k2018 }};
 
@@ -110,6 +119,7 @@
         var minLap = plotMins[race][0]
         var maxLap = plotMins[race][1]
 
+        var hAxisTicks = gethAxisDict(maxLap)
         var raceSplitsArray = getRaceAthleteSplits(raceSplits, bibDict, minLap, maxLap);
 
         var data = google.visualization.arrayToDataTable(raceSplitsArray);
@@ -118,7 +128,10 @@
             title: "Night of 10,000m #LoveLifeLove25Laps",
             width: 1000,
             height: 1200,
-            hAxis: {title: "Time (seconds)"},
+            hAxis: {
+                title: "Time (mins)",
+                ticks: hAxisTicks
+            },
             legend: {position: 'none'},
             bar: { groupWidth: '75%' },
             isStacked: true
