@@ -17,7 +17,7 @@
       <pubDate>Tue, 23 Apr 2019 12:19:41 -0400</pubDate>
       
       <guid>https://eileenbrandley.github.io/runningData/posts/nightof10k2018/</guid>
-      <description>200m splits for night of 10000 metres athletes The colour of the lap should indicate the speed; the redder the block, the hotter the lap. Hover over a block for a little more info
+      <description>200m splits for night of 10000 metres athletes The colour of the lap should indicate the speed; the redder the block, the hotter the lap. Hover over a block for a little more info.
    google.charts.load(&#39;current&#39;, {packages: [&#39;corechart&#39;, &#39;bar&#39;]}); google.charts.setOnLoadCallback(drawChart); const plotMins = { 1: [37, 47], 2: [33, 43], 3: [35, 45], 4: [31, 41], 5: [31, 41], 7: [33, 43], 8: [31, 41], 9: [33, 43], 10: [27, 37] } const pSBC=(p,c0,c1,l)={ let r,g,b,P,f,t,h,i=parseInt,m=Math.</description>
     </item>
     

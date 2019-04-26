@@ -113,7 +113,6 @@
 
     function drawChart(race=4) {
         var rawData = {{ .Site.Data.night10k2018 }};
-        console.log(rawData['events'][race]['name'])
 
         var bibDict = getBibDict(rawData['competitors']);
         var raceSplits = rawData['events'][race]['units'][0]['results'];
@@ -122,7 +121,6 @@
 
         var hAxisTicks = gethAxisDict(maxLap)
         var raceSplitsArray = getRaceAthleteSplits(raceSplits, bibDict, minLap, maxLap);
-        console.log(raceSplitsArray)
 
         var data = google.visualization.arrayToDataTable(raceSplitsArray);
 
