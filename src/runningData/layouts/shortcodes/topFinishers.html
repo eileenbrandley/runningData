@@ -1,0 +1,119 @@
+<script type="text/javascript"></script>
+<script>
+
+    google.charts.setOnLoadCallback(drawTable);
+
+    function updateDictionary(k, dict) {
+        if (k in dict) {dict[k] += 1} else {dict[k] = 1}
+    }
+
+    function sortFunctionTable(a, b) {
+        if (a[1]  === b[1]) {
+            return 0;
+        }
+        else {
+            return (a[1] < b[1]) ? 1 : -1;
+        }
+    }
+
+    function topFinishers(upto=10, isFemale=true) {
+
+        var data = getSurreyLeagueData(isFemale);
+        var runnersDict = {};
+
+        for (y in data) {
+            for (m in data[y]){
+                var positions = data[y][m]['positions'];
+
+                for (p = 0; p < upto; p++) {
+                    var a = positions[p];
+                    var name = a['givenName'].toLowerCase() + ' ' + a['familyName'].toLowerCase();
+                    updateDictionary(name, runnersDict)
+                }
+            }
+        }
+        return dictToArray(runnersDict)
+    }
+
+    function dictToArray(d) {
+        var a = [];
+
+        for (k in d) {
+            a.push([k, d[k]])
+        }
+        return a.sort(sortFunctionTable)
+    }
+
+
+    function drawTable(n=10, isFemale=true) {
+
+        var title = "Top " + n + " finishes";
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Athlete');
+        data.addColumn('number', title);
+
+        athletes = topFinishers(n, isFemale);
+
+        data.addRows(athletes);
+
+        var table = new google.visualization.Table(document.getElementById('table_div'));
+
+        options = {
+            showRowNumber: true,
+            width: '100%',
+            height: '100%',
+            page: true,
+            pageSize: 15,
+            cssClassNames: {
+                headerRow: 'header-background',
+                tableRow: 'row-background',
+                oddTableRow: 'oddrow-background',
+            }
+        };
+
+        table.draw(data, options);
+    }
+
+
+
+    function updateTextInput(val) {
+        document.getElementById('rangeText').innerText="Top " + val + " finishes :";
+    }
+
+
+</script>
+
+<div class="slidecontainer" style="margin-top: 0">
+        <label><span id="rangeText">Top 10 finish :</span>
+                <input type="range" min="1" max="50" value="10" class="slider" id="myRange" onchange="updateTextInput(this.value);">
+        </label>
+</div>
+<label for="female" style="margin-top: 0;"><input type="radio" name="gender" value="female" id="female" checked> Senior Women<br></label>
+<label for="male" style="margin-top: 0;"><input type="radio" name="gender" value="male" id="male"> Senior Men</label>
+
+
+<div id="table_div"></div>
+
+<style>
+        .header-background {
+                background-color: #373A6D;
+                color: #FF8246;
+                font-size: 18px;
+                font: 'Miriam Libre';
+        }
+        .row-background {
+                background-color: #6FC2D0;
+                color: #4e4c50;
+                font-size: 16px;
+                font: 'Miriam Libre';
+        }
+        .oddrow-background {
+                background-color: #BEEEF7;
+                color: #4e4c50;
+                font-size: 16px;
+                font: 'Miriam Libre';
+        }
+        .google-visualization-table .gradient {
+                background-image: none;
+        }
+</style>

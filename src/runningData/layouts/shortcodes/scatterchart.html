@@ -3,7 +3,7 @@
 <script>
 
     google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(function() { drawChart(true);});
+    google.charts.setOnLoadCallback(drawChart);
 
     function drawChart(longLegs=true) {
 

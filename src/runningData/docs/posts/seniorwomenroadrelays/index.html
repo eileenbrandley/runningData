@@ -203,7 +203,7 @@ switch between the two, hovering over a point should show a little more detail a
 <script>
 
     google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(function() { drawChart(true);});
+    google.charts.setOnLoadCallback(drawChart);
 
     function drawChart(longLegs=true) {
 

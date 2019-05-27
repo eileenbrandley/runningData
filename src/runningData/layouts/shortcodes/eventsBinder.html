@@ -1,0 +1,47 @@
+<script>
+
+    (function () {
+        window.onload=function(){
+            var slider = document.getElementById("myRange");
+            var g = document.getElementsByName('gender');
+
+            var n = 10;
+            var isFemale = true;
+
+            slider.oninput = function() {
+                n = this.value;
+                drawTable(n=n, female=isFemale)
+            }
+
+            // loop through list
+            for (var i=0, len=g.length; i<len; i++) {
+                g[i].onclick = function() { // assign onclick handler function to each
+                    // put clicked radio button's value in total field
+                    isFemale = this.value === "female";
+                    drawTable(n=n, female=isFemale);
+                };
+            }
+
+            const selectElement = document.querySelector('.season');
+            var gBox = document.getElementsByName('boxGender');
+
+            var isFemale = true;
+            var year = "2018";
+
+            selectElement.addEventListener('change', (event) => {
+                year = event.target.value
+                drawBarColors(year=year, isFemale=isFemale);
+            });
+
+            // loop through list
+            for (var i=0, len=gBox.length; i<len; i++) {
+                gBox[i].onclick = function() { // assign onclick handler function to each
+                    // put clicked radio button's value in total field
+                    isFemale = this.value === "female";
+                    drawBarColors(year=year, isFemale=isFemale);
+                };
+            }
+        }
+    }());
+
+</script>

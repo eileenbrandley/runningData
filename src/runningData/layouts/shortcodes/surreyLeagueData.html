@@ -1,0 +1,11 @@
+<script>
+    function getSurreyLeagueData(isFemale=true){
+
+        if (isFemale){
+            return {{ .Site.Data.surreyLeagueSeasonsSW }}
+        } else {
+            return {{ .Site.Data.surreyLeagueSeasonsSM }}
+        }
+
+    }
+</script>

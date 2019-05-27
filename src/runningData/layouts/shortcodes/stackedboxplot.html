@@ -1,10 +1,8 @@
-
-
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript"></script>
 <script>
 
-    google.charts.load('current', {packages: ['corechart', 'bar']});
+    google.charts.load('current', {packages: ['corechart', 'bar', 'table']});
     google.charts.setOnLoadCallback(drawBarColors);
 
     function sortFunction(a, b) {
@@ -22,15 +20,19 @@
         return a.length === 5;
     }
 
-
-    function drawBarColors(year="2018", women=true) {
-        if (women){
-            var rawData = {{ .Site.Data.surreyLeagueSeasonsSW }}
-            var toScore = 5
+    function athletesToScore(isFemale) {
+        if (isFemale){
+            return 5;
         } else {
-            var rawData = {{ .Site.Data.surreyLeagueSeasonsSM }}
-            var toScore = 10
+            return 10;
         }
+    }
+
+
+    function drawBarColors(year="2018", isFemale=true) {
+
+        var rawData = getSurreyLeagueData(isFemale);
+        var toScore = athletesToScore(isFemale);
 
         var teamScores = {}
         var matchScores = [["Club", "Match 1", "Match 2", "Match 3", "Match 4"]]
@@ -83,31 +85,6 @@
         chart.draw(data, options);
     }
 
-    (function () {
-        window.onload=function(){
-
-            const selectElement = document.querySelector('.season');
-            var g = document.getElementsByName('gender');
-
-            var isFemale = true;
-            var year = "2018";
-
-            selectElement.addEventListener('change', (event) => {
-                year = event.target.value
-                drawBarColors(year=year, women=isFemale);
-            });
-
-            // loop through list
-            for (var i=0, len=g.length; i<len; i++) {
-                g[i].onclick = function() { // assign onclick handler function to each
-                    // put clicked radio button's value in total field
-                    isFemale = this.value === "female";
-                    drawBarColors(year=year, women=isFemale);
-                };
-            }
-        }
-    }())
-
 </script>
 
 <label>Choose a season:
@@ -119,7 +96,7 @@
         <option value="2014">2014/15</option>
     </select>
 </label><br>
-    <label for="female" style="margin-top: 0;"><input type="radio" name="gender" value="female" id="female" checked> Senior Women<br></label>
-    <label for="male" style="margin-top: 0;"><input type="radio" name="gender" value="male" id="male"> Senior Men</label>
+    <label for="female" style="margin-top: 0;"><input type="radio" name="boxGender" value="female" id="female" checked> Senior Women<br></label>
+    <label for="male" style="margin-top: 0;"><input type="radio" name="boxGender" value="male" id="male"> Senior Men</label>
 <div id="stackedbox_div" style="height: 1000px; width: 100%; margin-top: 0;  left: 10px"></div>
 
