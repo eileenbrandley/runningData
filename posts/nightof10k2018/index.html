@@ -238,6 +238,25 @@ a block for a little more info.</p>
         else return"#"+(4294967296+r*16777216+g*65536+b*256+(f?m(a*255):0)).toString(16).slice(1,f?undefined:-2)
     }
 
+    function add(accumulator, a) {
+        return accumulator + a;
+    }
+
+
+    function fastestLapTimes(lapTimes, a) {
+        var maxLap = 0;
+        var minLap = 120;
+
+        for (i=0; i < times.length - a; i++){
+            var t = lapTimes.slice(i, i+a).reduce(add)
+            maxLap = Math.max(maxLap, t);
+            minLap = Math.min(minLap, t);
+
+        }
+        return [minLap, maxLap]
+
+    }
+
     function getShadingPercent(lapTime, lapMin=35, lapMax=40) {
         if (lapTime < lapMin) {
             return 0
