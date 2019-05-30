@@ -5,9 +5,9 @@ draft: false
 ---
 {{< surreyLeagueData >}}
 
-## A brief sciencing of Surrey League data:
+## A brief sciencing of Surrey League (div 1) data:
 I have had a go at making some funky plots from data from the last few Surrey League years (the data I have starts at 
-the 2014/15 season). They are made from data from the wonderful [Surrey League website](https://surreyleague.org/) and 
+the 2014/15 season). The plots are made from data from the wonderful [Surrey League website](https://surreyleague.org/) and 
 the google charts API (not mobile browser friendly, sorry!).
 
  - [Season Points]({{<ref "#season-points" >}})
