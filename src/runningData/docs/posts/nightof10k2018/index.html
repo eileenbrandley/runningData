@@ -383,7 +383,27 @@ a block for a little more info.</p>
         <option value="10"> Race 9 - Men's A</option>
     </select>
 </label>
-<div id="bar_chart_div" style="width: 800px; height: 500px;"></div>
+<div id="bar_chart_div"></div>
+
+<style>
+
+    #bar_chart_div {
+        width: 90%;
+        height: 500px;
+        margin: 0;
+    }
+
+    @media screen and (max-width: 45em) {
+        #bar_chart_div {
+            width: 100%;
+            height: 500px;
+            margin: 0;
+            overflow: scroll;
+        }
+    }
+
+
+</style>
 
 
 

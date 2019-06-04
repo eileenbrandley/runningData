@@ -211,4 +211,24 @@
 <label for="female" style="margin-top: 0;"><input type="radio" name="gender" value="female" id="female" checked> Senior Women<br></label>
 <label for="male" style="margin-top: 0;"><input type="radio" name="gender" value="male" id="male"> Senior Men</label>
 
-<div id="chart_div" style="width: 800px; height: 500px;"></div>
+<div id="chart_div"></div>
+
+<style>
+
+    #chart_div {
+        width: 800px;
+        height: 500px;
+        margin: 0;
+    }
+
+    @media screen and (max-width: 45em) {
+        #chart_div {
+            width: 100%;
+            height: 500px;
+            margin: 0;
+            overflow: scroll;
+        }
+    }
+
+
+</style>
