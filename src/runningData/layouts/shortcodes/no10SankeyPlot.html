@@ -67,6 +67,7 @@
         var allNames = new Set([]);
 
         for (var a in data) {
+            console.log(data[a]['athlete']);
             var c = colors[a];
             var p0 = {'currentPosition': 0, 'seconds': 0};
             var n = data[a]['athlete'].split(" ");
