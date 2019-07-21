@@ -7,5 +7,6 @@
 .idea/workspace.xml
 src/.DS_Store
 src/runningData/.DS_Store
+src/runningData/jupyter
 
 public

@@ -6,10 +6,31 @@
     <description>Recent content on Running data</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 23 Apr 2019 12:19:41 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 14 Jul 2019 12:19:41 -0400</lastBuildDate>
     
 	<atom:link href="https://eileenbrandley.github.io/runningData/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Night of 10000 positions plot</title>
+      <link>https://eileenbrandley.github.io/runningData/posts/nightof10k2019positions/</link>
+      <pubDate>Sun, 14 Jul 2019 12:19:41 -0400</pubDate>
+      
+      <guid>https://eileenbrandley.github.io/runningData/posts/nightof10k2019positions/</guid>
+      <description>Positions of athletes throughout the race Trying to show athlete&amp;rsquo;s positions at each km split throughout the race. The colours at each node don&amp;rsquo;t currently mean anything but I am working on that.
+Kind of fun to see the change in race positions throughout the race too. If you are interested in lap times for the race, you can find that here
+   google.charts.load(&#39;current&#39;, {&#39;packages&#39;:[&#39;sankey&#39;]}); google.charts.setOnLoadCallback(drawChart); var colors = [ &#39;lime&#39;, &#39;blue&#39;, &#39;crimson&#39;, &#39;cyan&#39;, &#39;mediumpurple&#39;, &#39;midnightblue&#39;, &#39;orange&#39;, &#39;palegreen&#39;, &#39;palevioletred&#39;, &#39;coral&#39;, &#39;darkblue&#39;, &#39;deeppink&#39;, &#39;deepskyblue&#39;, &#39;dodgerblue&#39;, &#39;forestgreen&#39;, &#39;plum&#39;, &#39;red&#39;, &#39;gold&#39;, &#39;lawngreen&#39;, &#39;tomato&#39;, &#39;violet&#39;, &#39;seagreen&#39;, &#39;teal&#39;, &#39;yellow&#39;, &#39;slategrey&#39;, &#39;firebrick&#39;, &#39;dimgray&#39;, &#39;darkturquoise&#39;, &#39;darkorange&#39;, &#39;navy&#39;, &#39;magenta&#39;, &#39;royalblue&#39;, &#39;springgreen&#39;, &#39;goldenrod&#39;, &#39;gainsboro&#39;, &#39;dimgray&#39;, &#39;orange&#39;, &#39;orchid&#39;, &#39;peru&#39;, &#39;powderblue&#39;, ]; var formatTime = function(t) { m = Math.</description>
+    </item>
+    
+    <item>
+      <title>Night of the 10000 metres - 2019</title>
+      <link>https://eileenbrandley.github.io/runningData/posts/nightof10k2019/</link>
+      <pubDate>Sun, 07 Jul 2019 12:19:41 -0400</pubDate>
+      
+      <guid>https://eileenbrandley.github.io/runningData/posts/nightof10k2019/</guid>
+      <description>200m splits for night of 10000 metres athletes The colour of the lap should indicate the speed; the redder the block, the hotter the lap. Hover over a block for a little more info.
+   google.charts.load(&#39;current&#39;, {packages: [&#39;corechart&#39;, &#39;bar&#39;]}); google.charts.setOnLoadCallback(drawChart); const plotMins = { 0: [37, 47], 1: [32, 40], 2: [35, 45], 3: [31, 41], 4: [34, 44], 5: [31, 37], 6: [33, 40], 7: [31, 36] } const pSBC=(p,c0,c1,l)={ let r,g,b,P,f,t,h,i=parseInt,m=Math.</description>
+    </item>
     
     <item>
       <title>Night of the 10000 metres</title>

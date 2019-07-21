@@ -1,0 +1,178 @@
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript"></script>
+<script>
+
+    google.charts.load('current', {'packages':['sankey']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    var colors = [
+        'lime',
+        'blue',
+        'crimson',
+        'cyan',
+        'mediumpurple',
+        'midnightblue',
+        'orange',
+        'palegreen',
+        'palevioletred',
+        'coral',
+        'darkblue',
+        'deeppink',
+        'deepskyblue',
+        'dodgerblue',
+        'forestgreen',
+        'plum',
+        'red',
+        'gold',
+        'lawngreen',
+        'tomato',
+        'violet',
+        'seagreen',
+        'teal',
+        'yellow',
+        'slategrey',
+        'firebrick',
+        'dimgray',
+        'darkturquoise',
+        'darkorange',
+        'navy',
+        'magenta',
+        'royalblue',
+        'springgreen',
+        'goldenrod',
+        'gainsboro',
+        'dimgray',
+        'orange',
+        'orchid',
+        'peru',
+        'powderblue',
+    ];
+
+    var formatTime = function(t) {
+        m = Math.floor(t/60);
+        s = Math.round(t % 60, 2);
+
+        if (s<10) {
+            return `${m}:0${s}`
+        } else {
+            return `${m}:${s}`
+        }
+    };
+
+    var getData = function(race) {
+        var rawData = {{ .Site.Data.night10k2019_transformed }};
+        var data = rawData[race]['splits'];
+        var athlete_positions = [];
+
+        var allNames = new Set([]);
+
+        for (var a in data) {
+            var c = colors[a];
+            var p0 = {'currentPosition': 0, 'seconds': 0};
+            var n = data[a]['athlete'].split(" ");
+            var i = n[0][0] + n[n.length - 1][0];
+            if (allNames.has(i)) {
+                i = n[0][0] + n[n.length - 1].slice(0, 2);
+                allNames.add(i);
+            } else {
+                allNames.add(i);
+            }
+
+            for (var j=0; j<10; j++) {
+                var lap = j * 5 + 4;
+                var p1 = data[a]['splits'][lap]
+                var t = formatTime(p1['seconds'] - p0['seconds']);
+                if (lap === 49){
+                    var tooltip = `${data[a]['athlete']} (${t} km): ${data[a]['performance']}`
+                } else {
+                    var tooltip = `${data[a]['athlete']} (${t} km)`
+                }
+
+                athlete_positions.push([`${i} ${j}km`, `${i} ${(j+1)}km`, 1, tooltip, lap, p0['currentPosition'], p1['currentPosition'], c])
+                p0 = p1;
+            }
+        }
+        return athlete_positions
+    };
+
+    var mysortfunction = function(a, b) {
+
+        var o1 = a[4];
+        var o2 = b[4];
+
+        var p1 = a[6];
+        var p2 = b[6];
+
+        if (o1 < o2) return -1;
+        if (o1 > o2) return 1;
+        if (p1 < p2) return -1;
+        if (p1 > p2) return 1;
+        return 0;
+    }
+
+    function drawChart(race=1) {
+        arrayData = getData(race);
+        arrayData.sort(mysortfunction);
+
+        var colorsToShow = []
+        var newArray = [];
+        for (a=0; a < arrayData.length; a++) {
+            colorsToShow.push(arrayData[a][7])
+            newArray.push(arrayData[a].slice(0, 4))
+        }
+
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'From');
+        data.addColumn('string', 'To');
+        data.addColumn('number', 'Weight');
+        data.addColumn({type: 'string', role: 'tooltip'});
+        data.addRows(newArray);
+
+        // Sets chart options.
+        var options = {
+            width: 900,
+            sankey: {
+                iterations: 0,
+                node: {
+                    colors: colorsToShow,
+                    label: {
+                        fontName: 'Times-Roman',
+                        fontSize: 8
+                    }
+                },
+            }
+        };
+
+        // Instantiates and draws our chart, passing in some options.
+        var chart = new google.visualization.Sankey(document.getElementById('sankey_basic'));
+        chart.draw(data, options);
+    }
+
+    (function () {
+        window.onload=function(){
+
+            const selectElement = document.querySelector('.race');
+
+            selectElement.addEventListener('change', (event) => {
+                var race = parseInt(event.target.value);
+                drawChart(race);
+            });
+
+        }
+    }())
+
+</script>
+
+<label>Choose a race:
+    <select class="race" name="race">
+        <option value="1" selected> Race 3 - Men's D</option>
+        <option value="2"> Race 4 - Women's C</option>
+        <option value="3"> Race 5 - Men's C</option>
+        <option value="4"> Race 6 - Women's B</option>
+        <option value="5"> Race 9 - Men's B</option>
+        <option value="6"> Race 8 - Women's A</option>
+        <option value="7"> Race 9 - Men's A</option>
+    </select>
+</label>
+<div id="sankey_basic" style="width: 900px; height: 900px;"></div>
