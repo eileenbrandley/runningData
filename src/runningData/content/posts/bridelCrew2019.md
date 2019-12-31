@@ -1,6 +1,6 @@
 ---
 title: "Bridle Path Commits"
-date: 2019-12-31T12:19:41-04:00
+date: 2019-12-29T12:19:41-04:00
 draft: false
 ---
 
