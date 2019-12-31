@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="HWAC_prod" uuid="1b6db29a-cc0d-4518-b914-80730618e26d">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://ec2-79-125-6-250.eu-west-1.compute.amazonaws.com:5432/d76rh5g60d50m9</jdbc-url>
+      <driver-properties>
+        <property name="readOnly" value="true" />
+      </driver-properties>
+    </data-source>
+  </component>
+</project>
