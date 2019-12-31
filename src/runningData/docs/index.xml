@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Running data</title>
+    <title>Home page on Running data</title>
     <link>https://eileenbrandley.github.io/runningData/</link>
-    <description>Recent content on Running data</description>
+    <description>Recent content in Home page on Running data</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 29 Dec 2019 12:19:41 -0400</lastBuildDate>
