@@ -42,13 +42,13 @@
     };
 
     var getScatterColour = function(miles, maxMiles=13) {
-        var color2 = '#C4f0C5';
-        var color1 = '#305f2e';
+        var color1 = '#C4f0C5';
+        var color2 = '#305f2e';
         var p = getShadingPercent(miles, 0, maxMiles);
         if (p == 0) {
             return '#ecedf0';
         } else {
-            return pSBC(p, color1, color2);
+            return pSBC(p, color1, color2, true);
         }
     };
 
