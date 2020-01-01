@@ -18,7 +18,7 @@ Maybe this is wrong, I will wait for some real bridle path New Yorkers to correc
 It is the bridle path around the res. It is great.
 
 <div style="text-align: center">
-    <img src="/images/the-bridle-path.png" />
+    <img src="/runningData/images/the-bridle-path.png" />
 </div>
 
 
