@@ -12,6 +12,17 @@
     
     
     <item>
+      <title>Olympic Marathon Qualifiers</title>
+      <link>https://eileenbrandley.github.io/runningData/posts/marathonotq/</link>
+      <pubDate>Sun, 26 Jan 2020 12:19:41 -0400</pubDate>
+      
+      <guid>https://eileenbrandley.github.io/runningData/posts/marathonotq/</guid>
+      <description>Small analysis of Olympic Trials Qualifiers Was wondering which state and race produced the most qualifiers so I put this together.
+Data is gratefully taken from here
+Half marathon times are converted to marathon times with the formula: hm * 1.75 + 24.68 where hm is half marathon time in minutes. That is calculated from a formula derived from 538&amp;rsquo;s marathon predictor assuming high weekly mileage. All qualifiers are in there, e.</description>
+    </item>
+    
+    <item>
       <title>Bridle Path Commits</title>
       <link>https://eileenbrandley.github.io/runningData/posts/bridelcrew2019/</link>
       <pubDate>Sun, 29 Dec 2019 12:19:41 -0400</pubDate>
