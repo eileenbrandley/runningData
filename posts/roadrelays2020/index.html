@@ -189,7 +189,7 @@
 
 <h3 id="current-road-relay-standings">Current Road Relay Standings</h3>
 
-<p>Ranking is based on average pace of runners that have currently ran.</p>
+<p>Ranking is based on average pace of runners that have currently ran and only displaying teams who have a least a 50% completed team at the point of publishing.</p>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript"></script>
@@ -233,10 +233,10 @@
     }
 
     function sortFunction(a, b) {
-        if ((sumArray(a) / a.length)  === (sumArray(b) / b.length)) {
+        if ((sumArray(a) / a.filter(function(value) { return value !== undefined }).length)  === (sumArray(b) / b.filter(function(value) { return value !== undefined }).length)) {
             return 0;
         } else {
-            return ((sumArray(a) / a.length) < (sumArray(b) / b.length)) ? -1 : 1;
+            return ((sumArray(a) / a.filter(function(value) { return value !== undefined }).length) < (sumArray(b) / b.filter(function(value) { return value !== undefined }).length)) ? -1 : 1;
         }
     }
 
@@ -321,7 +321,7 @@
             legend: {position: 'none'},
             bar: { groupWidth: '85%' },
             isStacked: true,
-            chartArea: { width: "60%", height: "80%" }
+            chartArea: { width: "80%", height: "90%" }
         };
         var chart = new google.visualization.BarChart(document.getElementById('stackedbox_div'));
         chart.draw(data, options);
@@ -346,7 +346,7 @@
 
     <label for="female" style="margin-top: 0;"><input class='gender' type="radio" name="boxGender" value="female" id="female" checked> Senior Women<br></label>
     <label for="male" style="margin-top: 0;"><input class='gender' type="radio" name="boxGender" value="male" id="male"> Senior Men</label>
-<div id="stackedbox_div" style="height: 1000px; width: 100%; margin-top: 0;  left: 10px"></div>
+<div id="stackedbox_div" style="height: 1000px; width: 100%; margin-top: 0;  left: 10px; overflow-x: scroll;"></div>
 
 
 
