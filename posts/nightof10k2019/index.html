@@ -271,7 +271,6 @@ a block for a little more info.</p>
             splitArray.push(c);
         }
         splitArray.push(athlete['performance']);
-        console.log(splitArray)
         return splitArray
 
     }
@@ -309,6 +308,7 @@ a block for a little more info.</p>
 
         var hAxisTicks = gethAxisDict(maxLap);
         var raceSplitsArray = getRaceAthleteSplits(raceSplits, minLap, maxLap);
+        console.log(raceSplitsArray.slice(0, 3));
 
         var data = google.visualization.arrayToDataTable(raceSplitsArray);
 

@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>National Road Relays 2020</title>
+      <link>https://eileenbrandley.github.io/runningData/posts/roadrelays2020/</link>
+      <pubDate>Tue, 03 Mar 2020 12:19:41 -0400</pubDate>
+      
+      <guid>https://eileenbrandley.github.io/runningData/posts/roadrelays2020/</guid>
+      <description>Current Road Relay Standings Ranking is based on average pace of runners that have currently ran.
+   google.charts.load(&#39;current&#39;, {packages: [&#39;corechart&#39;, &#39;bar&#39;, &#39;table&#39;]}); google.charts.setOnLoadCallback(drawBarColors); const pSBC=(p,c0,c1,l)={ let r,g,b,P,f,t,h,i=parseInt,m=Math.round,a=typeof(c1)==&#34;string&#34;; if(typeof(p)!=&#34;number&#34;||p1||typeof(c0)!=&#34;string&#34;||(c0[0]!=&#39;r&#39;&amp;&amp;c0[0]!=&#39;#&#39;)||(c1&amp;&amp;!a))return null; if(!this.pSBCr)this.pSBCr=(d)={ let n=d.length,x={}; if(n9){ [r,g,b,a]=d=d.split(&#34;,&#34;),n=d.length; if(n4)return null; x.r=i(r[3]==&#34;a&#34;?r.slice(5):r.slice(4)),x.g=i(g),x.b=i(b),x.a=a?parseFloat(a):-1 }else{ if(n==8||n==6||n4?d[4]+d[4]:&#34;&#34;); d=i(d.slice(1),16); if(n==9||n==5)x.r=d24&amp;255,x.g=d16&amp;255,x.b=d8&amp;255,x.a=m((d&amp;255)/0.255)/1000; else x.r=d16,x.g=d8&amp;255,x.b=d&amp;255,x.a=-1 }return x}; h=c0.length9,h=a?c1.length9?true:c1==&#34;c&#34;?!h:false:h,f=pSBCr(c0),P=p=0||t=0,a=f?atoScore*2) { finalTimes.push(thisTeam.concat(teamScores[t].slice(0, toScore*2))) } else if(teamScores[t].length  toScore) { uncompleteTeam = teamScores[t].concat(Array.apply(null, Array((2 * toScore - teamScores[t].length)))); finalTimes.push(thisTeam.concat(uncompleteTeam)); } } var allFinalTimes = [headerRow(toScore)].</description>
+    </item>
+    
+    <item>
       <title>Olympic Marathon Qualifiers</title>
       <link>https://eileenbrandley.github.io/runningData/posts/marathonotq/</link>
       <pubDate>Sun, 26 Jan 2020 12:19:41 -0400</pubDate>
